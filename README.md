@@ -1,24 +1,76 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
 
-Things you may want to cover:
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| nickname           | string  | null:false  |
+| email              | string  | null:false, unique:true  |
+| password           | string  | null:false  |
+| last-name          | string  | null:false  |
+| first-name         | string  | null:false  |
+| last-name-reading  | string  | null:false  |
+| first-name-reading | string  | null:false  |
+| birth-year         | integer | null:false  |
+| birth-month        | integer | null:false  |
+| birth-day          | integer | null:false  |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :purchases
 
-* Configuration
 
-* Database creation
 
-* Database initialization
+## itemsテーブル
 
-* How to run the test suite
+| Column             | Type    | Options     |
+| ------------------ | ------- | ----------- |
+| item-image         | text    | null:false  |
+| item-name          | string  | null:false  |
+| item-text          | text    | null:false  |
+| item-category      | integer | null:false  |
+| item-situation     | integer | null:false  |
+| shipping-fee       | integer | null:false  |
+| delivery-region    | integer | null:false  |
+| delivery-day       | integer | null:false  |
+| price              | string  | null:false  |
+| user               | references | null:false, foreign_key:true |
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
 
-* Deployment instructions
+- has_one :purchases
+- belongs_to :user
 
-* ...
+
+
+## purchasesテーブル
+
+| Column     | Type       | Options     |
+| ---------- | ---------- | ----------- |
+| user       | references | null:false, foreign_key:true |
+| item       | references | null:false, foreign_key:true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :items
+- has_one :address
+
+
+
+## addressesテーブル
+
+| Column             | Type       | Options     |
+| ------------------ | ---------- | ----------- |
+| postal-code        | string     | null:false  |
+| prefecture         | integer    | null:false  |
+| city               | string     | null:false  |
+| house-number       | string     | null:false  |
+| building-name      | string     |             |
+| phone-number       | string     | null:false  |
+| purchase           | references | null:false, foreign_key:true |
+
+### Association
+
+- belongs_to :purchase
