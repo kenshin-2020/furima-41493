@@ -6,14 +6,12 @@
 | ------------------ | ------- | ----------- |
 | nickname           | string  | null:false  |
 | email              | string  | null:false, unique:true  |
-| password           | string  | null:false  |
-| last-name          | string  | null:false  |
-| first-name         | string  | null:false  |
-| last-name-reading  | string  | null:false  |
-| first-name-reading | string  | null:false  |
-| birth-year         | integer | null:false  |
-| birth-month        | integer | null:false  |
-| birth-day          | integer | null:false  |
+| encrypted_password | string  | null:false  |
+| last_name          | string  | null:false  |
+| first_name         | string  | null:false  |
+| last_name_reading  | string  | null:false  |
+| first_name_reading | string  | null:false  |
+| birth-date         | date    | null:false  |
 
 ### Association
 
@@ -26,21 +24,21 @@
 
 | Column             | Type    | Options     |
 | ------------------ | ------- | ----------- |
-| item-image         | text    | null:false  |
-| item-name          | string  | null:false  |
-| item-text          | text    | null:false  |
-| item-category      | integer | null:false  |
-| item-situation     | integer | null:false  |
-| shipping-fee       | integer | null:false  |
-| delivery-region    | integer | null:false  |
-| delivery-day       | integer | null:false  |
-| price              | string  | null:false  |
+| item_name          | string  | null:false  |
+| item_text          | text    | null:false  |
+| category           | integer | null:false  |
+| situation          | integer | null:false  |
+| shippingfee        | integer | null:false  |
+| prefecture         | integer | null:false  |
+| deliveryday        | integer | null:false  |
+| price              | integer | null:false  |
 | user               | references | null:false, foreign_key:true |
 
 ### Association
 
-- has_one :purchases
+- has_one :purchase
 - belongs_to :user
+- has_one_attached :image
 
 
 
@@ -54,7 +52,7 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :items
+- belongs_to :item
 - has_one :address
 
 
@@ -63,12 +61,12 @@
 
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
-| postal-code        | string     | null:false  |
+| postal_code        | string     | null:false  |
 | prefecture         | integer    | null:false  |
 | city               | string     | null:false  |
-| house-number       | string     | null:false  |
-| building-name      | string     |             |
-| phone-number       | string     | null:false  |
+| house_number       | string     | null:false  |
+| building_name      | string     |             |
+| phone_number       | string     | null:false  |
 | purchase           | references | null:false, foreign_key:true |
 
 ### Association
