@@ -11,7 +11,7 @@
 | first_name         | string  | null:false  |
 | last_name_reading  | string  | null:false  |
 | first_name_reading | string  | null:false  |
-| birth-date         | date    | null:false  |
+| birth_date         | date    | null:false  |
 
 ### Association
 
@@ -26,11 +26,11 @@
 | ------------------ | ------- | ----------- |
 | item_name          | string  | null:false  |
 | item_text          | text    | null:false  |
-| category           | integer | null:false  |
-| situation          | integer | null:false  |
-| shippingfee        | integer | null:false  |
-| prefecture         | integer | null:false  |
-| deliveryday        | integer | null:false  |
+| category_id        | integer | null:false  |
+| situation_id       | integer | null:false  |
+| shippingfee_id     | integer | null:false  |
+| prefecture_id      | integer | null:false  |
+| deliveryday_id     | integer | null:false  |
 | price              | integer | null:false  |
 | user               | references | null:false, foreign_key:true |
 
@@ -62,7 +62,7 @@
 | Column             | Type       | Options     |
 | ------------------ | ---------- | ----------- |
 | postal_code        | string     | null:false  |
-| prefecture         | integer    | null:false  |
+| prefecture_id      | integer    | null:false  |
 | city               | string     | null:false  |
 | house_number       | string     | null:false  |
 | building_name      | string     |             |
