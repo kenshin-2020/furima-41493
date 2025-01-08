@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :nickname,           presence: true
-  validates :last_name,          presence: true
-  validates :first_name,         presence: true
-  validates :last_name_reading,  presence: true
-  validates :first_name_reading, presence: true
+  validates :last_name,          presence: true, format: { with: /\A[\p{Han}\p{Hiragana}\p{Katakana}ー－]+\z/, message: "must be entered in full-width characters (Kanji, Hiragana, or Katakana)." }
+  validates :first_name,         presence: true, format: { with: /\A[\p{Han}\p{Hiragana}\p{Katakana}ー－]+\z/, message: "must be entered in full-width characters (Kanji, Hiragana, or Katakana)." }
+  validates :last_name_reading,  presence: true, format: { with: /\A[\p{Katakana}ー－]+\z/, message: "must be entered in full-width Katakana characters." }
+  validates :first_name_reading, presence: true, format: { with: /\A[\p{Katakana}ー－]+\z/, message: "must be entered in full-width Katakana characters." }
   validates :birth_date,         presence: true
 end
