@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :password,           presence: true,
-                                 format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: 'must include both letters and numbers' }
+  validates :password,
+            format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/, message: 'must include both letters and numbers' }
   validates :nickname,           presence: true
   validates :last_name,          presence: true,
                                  format: { with: /\A[\p{Han}\p{Hiragana}\p{Katakana}ー－]+\z/, message: 'must be entered in full-width characters (Kanji, Hiragana, or Katakana)' }
