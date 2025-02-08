@@ -11,11 +11,11 @@ class PurchaseAddress
     validates :phone_number, format: { with: /\A\d+\z/, message: 'must contain only numbers' },
                              length: { in: 10..11, message: 'must be between 10 and 11 digits' }
   end
-  validates :prefecture, numericality: { other_than: 0, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)
-    Address.create(postal_code: postal_code, prefecture_id: prefecture.id, city: city, house_number: house_number,
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, house_number: house_number,
                    building_name: building_name, phone_number: phone_number, purchase_id: purchase.id)
   end
 end
