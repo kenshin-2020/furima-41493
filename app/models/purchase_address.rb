@@ -11,6 +11,7 @@ class PurchaseAddress
     validates :phone_number, format: { with: /\A\d+\z/, message: 'must contain only numbers' },
                              length: { in: 10..11, message: 'must be between 10 and 11 digits' }
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :token
   end
 
   def save
