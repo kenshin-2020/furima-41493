@@ -1,6 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: :index
   before_action :set_item, only: [:index, :create]
+  before_action :redirect_if_invalid_access, only: [:index, :create]
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @purchase_address = PurchaseAddress.new
@@ -22,6 +23,12 @@ class PurchasesController < ApplicationController
 
   def set_item
     @item = Item.find(params[:item_id])
+  end
+
+  def redirect_if_invalid_access
+    return unless current_user.id == @item.user_id || @item.purchase.present?
+
+    redirect_to root_path
   end
 
   def pay_item
