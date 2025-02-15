@@ -16,4 +16,7 @@ class User < ApplicationRecord
   validates :first_name_reading, presence: true,
                                  format: { with: /\A[\p{Katakana}ー－]+\z/, message: 'must be entered in full-width Katakana characters' }
   validates :birth_date,         presence: true
+
+  has_many :items
+  has_many :purchases
 end
